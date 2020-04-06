@@ -1,18 +1,24 @@
-import React from 'react';
-import './App.css';
-import moment from 'moment'
-import zhCN from 'antd/es/locale/zh_CN'
-import {ConfigProvider} from 'antd'
-import Button from 'antd/es/button';
+import React from "react";
+import "./App.css";
+import moment from "moment";
+import zhCN from "antd/es/locale/zh_CN";
+import { ConfigProvider } from "antd";
+import "./test.scss";
+import RouterView from "./router/RouterView";
+moment.locale("zh-cn");
 
-
-moment.locale('zh-cn')
+function routerBeforeEnterHook(path: string) {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
 
 function App() {
   return (
     <ConfigProvider locale={zhCN}>
       <div className="App">
-        <Button type="primary">按钮</Button>
+        <RouterView beforeEnter={routerBeforeEnterHook} />
       </div>
     </ConfigProvider>
   );
