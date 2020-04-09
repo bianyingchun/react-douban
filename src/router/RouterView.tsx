@@ -8,7 +8,7 @@ function CustomRoute(props: IRouterViewProps) {
   if (path === "/") {
     return <Redirect to="/home" />;
   }
-  let matchRoute = routerMap.find((item) => {
+  let matchRoute = routerMap.find(item => {
     let url = item.path;
     url = url.replace(/(\:.+)/g, "[^/]+").replace(/\//g, "\\/");
     return new RegExp(`${url}(\\/|\\/)?$`, "gi").test(path);
@@ -25,7 +25,7 @@ function CustomRoute(props: IRouterViewProps) {
   return <Redirect to="/404" />;
 }
 
-export default function (props: IRouterViewProps) {
+export default function(props: IRouterViewProps) {
   return (
     <BrowserRouter>
       <Switch>
