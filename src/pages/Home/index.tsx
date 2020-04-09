@@ -2,42 +2,27 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Card, Tag, Carousel } from "antd";
 import {
-  CardListTop250Skeleton,
-  CardListSkeleton,
-  ListSkeleton,
+    CardListTop250Skeleton,
+    CardListSkeleton,
+    ListSkeleton,
 } from "src/skeletons/home";
 import LazyLoad from "react-lazyload";
 import * as _ from "lodash";
-import TopNav from "../../components/TopNav";
+import TopNav from "src/components/TopNav";
 import {
-<<<<<<< HEAD
     getHotShow,
     getNew,
     getGoodbox,
     getWeeklyMovie,
     getTop250,
-} from "../../api";
-import "./style.scss";
-import imgBanner001 from "../../assets/banner-001.jpg";
-import imgBanner002 from "../../assets/banner-002.jpg";
-import imgBanner003 from "../../assets/banner-003.jpg";
-import imgBanner004 from "../../assets/banner-004.jpg";
-import imgBanner005 from "../../assets/banner-005.jpg";
-=======
-  getHotShow,
-  getNew,
-  getGoodbox,
-  getWeeklyMovie,
-  getTop250,
-} from "../../api";
+} from "src/api";
 import "./style.scss";
 
-import imgBanner001 from "../assets/banner-001.jpg";
-import imgBanner002 from "../assets/banner-002.jpg";
-import imgBanner003 from "../assets/banner-003.jpg";
-import imgBanner004 from "../assets/banner-004.jpg";
-import imgBanner005 from "../assets/banner-005.jpg";
->>>>>>> bab5b450ccd9fd7cdca404b4ddcb22583ebed38b
+import imgBanner001 from "src/assets/banner-001.jpg";
+import imgBanner002 from "src/assets/banner-002.jpg";
+import imgBanner003 from "src/assets/banner-003.jpg";
+import imgBanner004 from "src/assets/banner-004.jpg";
+import imgBanner005 from "src/assets/banner-005.jpg";
 
 export default function Home() {
     let [hotShowList, setHotShowList] = useState<any>([]); // 热映
