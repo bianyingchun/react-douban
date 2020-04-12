@@ -4,18 +4,20 @@ const proxy = require("koa-server-http-proxy");
 const koaStatic = require("koa-static");
 const fs = require("fs");
 const path = require("path");
+const cors = require('koa2-cors');
 
 const router = Router();
 const app = new Koa();
+app.use(cors());
 
 const PORT = 9876;
 
 
 // views
-router.get("/*", async (ctx, next) => {
-    let str = fs.readFileSync(path.resolve(__dirname, "../build/index.html"), "utf-8");
-    ctx.response.body = str;
-});
+// router.get("/*", async (ctx, next) => {
+//     let str = fs.readFileSync(path.resolve(__dirname, "../build/index.html"), "utf-8");
+//     ctx.response.body = str;
+// });
 
 // proxy
 app.use(proxy('/api', {
@@ -34,7 +36,7 @@ app.use(proxy('/bing', {
 }));
 
 // static
-app.use(koaStatic(path.resolve(__dirname, "../build")));
+// app.use(koaStatic(path.resolve(__dirname, "../build")));
 
 // routes
 app.use(router.routes());

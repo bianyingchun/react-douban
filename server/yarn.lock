@@ -640,6 +640,11 @@ koa2-connect@^1.0.2:
   resolved "https://registry.yarnpkg.com/koa2-connect/-/koa2-connect-1.0.2.tgz#cf196d70a4e6a055f717522768d26cdfc5396f7b"
   integrity sha1-zxltcKTmoFX3F1InaNJs38U5b3s=
 
+koa2-cors@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/koa2-cors/-/koa2-cors-2.0.6.tgz#9ad23df3a0b9bb84530b46f5944f3fb576086554"
+  integrity sha512-JRCcSM4lamM+8kvKGDKlesYk2ASrmSTczDtGUnIadqMgnHU4Ct5Gw7Bxt3w3m6d6dy3WN0PU4oMP43HbddDEWg==
+
 koa@^2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/koa/-/koa-2.11.0.tgz#fe5a51c46f566d27632dd5dc8fd5d7dd44f935a4"

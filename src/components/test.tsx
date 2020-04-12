@@ -178,3 +178,13 @@ const testFunc = (x:number):string => {
     return ''
 }
 
+type aa = {
+  name:string;
+  [prop:string]:any
+}
+
+let bb:aa = {
+  name:'xx',
+  'xx':'xx',
+  age:2
+}
