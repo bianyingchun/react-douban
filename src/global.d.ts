@@ -24,7 +24,8 @@ declare global {
 
   interface CancelTokenSource extends CancelTokenSource2 {}
 
-  interface AxiosPromise extends AxiosPromise2 {}
+  interface AxiosPromise extends AxiosPromise2 { }
+  type AxiosMethod =  "get" | "GET" | "delete" | "DELETE" | "head" | "HEAD" | "options" | "OPTIONS" | "post" | "POST" | "put" | "PUT" | "patch" | "PATCH" | "link" | "LINK" | "unlink" | "UNLINK" | undefined
   // api 请求体
   interface iRequestGetData {
     start?: number;

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_CONFIG } from "../common/constant";
 
-function http2() {
+function http() {
   const CancelToken = axios.CancelToken;
   const source = CancelToken.source();
   window.cancalXHRList.push(source);
@@ -15,22 +15,41 @@ function http2() {
   });
   return instance;
 }
-const instance = axios.create({
-  baseURL: API_CONFIG.BASE_URL,
-  params: {
+const service = axios.create({ timeout: 1000 * 4 });
+service.defaults.baseURL = API_CONFIG.BASE_URL;
+service.defaults.headers["content-type"] = "json";
+const request = (
+  url: string,
+  method: AxiosMethod,
+  params?: iRequestGetData
+) => {
+  let args = params || {};
+  args = {
     apiKey: API_CONFIG.KEY,
-  },
-});
-function http() {
-  return instance;
-}
+    ...args,
+  };
+  // if (method === "get") {
+  //   return service.get(url, { params: args });
+  // }
+
+  let requestData = {
+    url,
+    method,
+    data: {},
+    params: {},
+  };
+  if (method === "get") {
+    requestData.params = args;
+  } else {
+    requestData.data = args;
+  }
+
+  return service(requestData);
+};
 
 export function getHotShow(params?: iRequestGetData): AxiosPromise {
   return new Promise((resolve, reject) => {
-    return http()
-      .get("/in_theaters", {
-        params
-      })
+    return request("/in_theaters", "get", params);
   });
 }
 
