@@ -1,0 +1,15 @@
+.loading-img-box {
+  width: 100%;
+  height: 270px;
+  position: relative;
+  background-color: #f5f6f7;
+  cursor: not-allowed;
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+  }
+}

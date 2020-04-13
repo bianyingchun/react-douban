@@ -44,25 +44,29 @@ const request = (
     requestData.data = args;
   }
 
-  return service(requestData);
+  return new Promise((resolve, reject) => {
+    service(requestData)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
 };
 
-export function getHotShow(params?: iRequestGetData): AxiosPromise {
-  return new Promise((resolve, reject) => {
-    return request("/in_theaters", "get", params);
-  });
+export function getHotShow(params?: iRequestGetData) {
+  return request("/in_theaters", "get", params);
 }
 
 // top250
-export function getTop250(params?: iRequestGetData): AxiosPromise {
-  return http().get("/top250", {
-    params,
-  });
+export function getTop250(params?: iRequestGetData) {
+  return request("/top250", "get", params);
 }
 
 //  新片
-export function getNew(): AxiosPromise {
-  return http().get("/new_movies");
+export function getNew() {
+  return request("/new_movies", "get");
 }
 
 // 电影详情

@@ -1,30 +1,24 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
-import { IStoreState, IAction, IHotShowProps } from "src/types";
-import { getHotShow } from "src/store/actions";
+import { IStoreState, IAction, INewMovieState } from "src/types";
+import { getNewMovie } from "src/store/actions";
 import MovieCard from "src/components/MovieCard";
 import { CardListSkeleton } from "src/components/Skeletons";
 import { IMovieItem } from "src/types";
-const HotShow: React.FC<IHotShowProps> = ({
-  title,
-  count,
-  start,
-  loading,
-  subjects,
-  getHotShow,
-}) => {
+const NewMovie: React.FC<INewMovieState> = ({ title, loading, subjects }) => {
   useEffect(() => {
-    getHotShow(start, count);
-  }, [count, getHotShow, start]);
+    console.log(222);
+    getNewMovie();
+  }, [getNewMovie]);
   return (
-    <div className="block block-hotshow">
+    <div className="block block-newmovie">
       <div className="line-raw">
         <h2 className="raw-title">{title}</h2>
       </div>
       <div className="cards-box clearfix">
         {loading ? (
-          <CardListSkeleton column={6} />
+          <CardListSkeleton column={4} />
         ) : (
           subjects.map((item: IMovieItem, index: number) => {
             return <MovieCard height={300} item={item} key={index} />;
@@ -35,9 +29,9 @@ const HotShow: React.FC<IHotShowProps> = ({
   );
 };
 const mapStateToProps = (state: IStoreState) => {
-  const hotShowState = state.hotShow;
+  const newMovieState = state.newMovie;
   return {
-    ...hotShowState,
+    ...newMovieState,
   };
 };
 
@@ -50,9 +44,9 @@ const mapStateToProps = (state: IStoreState) => {
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      getHotShow,
+      getNewMovie,
     },
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(HotShow);
+export default connect(mapStateToProps, mapDispatchToProps)(NewMovie);

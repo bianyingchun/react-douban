@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 import * as Constant from "./constants";
 import * as Api from "src/api";
 
-const setLoading = (type:string, isLoading: boolean): IAction => {
+const setLoading = (type: string, isLoading: boolean): IAction => {
   return {
     type,
     payload: {
@@ -27,7 +27,7 @@ export const getHotShow = (start: number = 0, count: number = 12) => async (
   // const fetchData = async () => {
   dispatch(setLoading(Constant.SET_LOADING_HOTSHOW, true));
   try {
-    const res: AxiosResponse = await Api.getHotShow({ start, count });
+    const res = await Api.getHotShow({ start, count });
     dispatch({
       type: Constant.SET_HOTSHOW_LIST,
       payload: {
@@ -42,11 +42,13 @@ export const getHotShow = (start: number = 0, count: number = 12) => async (
 
 export const getNewMovie = () => async (
   dispatch: Dispatch
-) => {
+  ) => {
   // const fetchData = async () => {
+  console.log(333);
   dispatch(setLoading(Constant.SET_LOADING_NEWMOVIE, true));
   try {
-    const res: AxiosResponse = await Api.getNew();
+    const res = await Api.getNew();
+    console.log("0000", res);
     dispatch({
       type: Constant.SET_NEWMOVIE_LIST,
       payload: {
@@ -65,7 +67,7 @@ export const getTop250 = (start: number = 0, count: number = 12) => async (
   // const fetchData = async () => {
   dispatch(setLoading(Constant.SET_LOADING_TOP250, true));
   try {
-    const res: AxiosResponse = await Api.getTop250({ start, count });
+    const res = await Api.getTop250({ start, count });
     dispatch({
       type: Constant.SET_TOP250_LIST,
       payload: {

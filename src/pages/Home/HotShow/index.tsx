@@ -20,7 +20,7 @@ const HotShow: React.FC<IHotShowProps> = ({
   return (
     <div className="block block-hotshow">
       <div className="line-raw">
-        <h2 className="raw-title">{title}</h2>
+        <h2 className="raw-title">正在热映</h2>
       </div>
       <div className="cards-box clearfix">
         {loading ? (
@@ -41,12 +41,6 @@ const mapStateToProps = (state: IStoreState) => {
   };
 };
 
-// // dispatch 可以传入对象、函数，这里不能直接简单的使用 Dispatch 类型
-// const mapDispatchToProps = (dispatch: any) => ({
-//     changeName: (data: any) => dispatch(changeName(data)),
-//     changeNameAsync: () => dispatch(changeNameAsync())
-// });
-// // 也可以使用 bindActionCreators
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {

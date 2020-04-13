@@ -12,11 +12,13 @@ const initState: IHotShowState = {
 
 export default (state = initState, action: IAction): IHotShowState => {
   const { type, payload } = action;
+  // console.log(type, payload);
   switch (type) {
     case Constant.SET_HOTSHOW_LIST:
-      return Object.assign(state, payload.data);
+      console.log(Object.assign({}, state, payload.data));
+      return Object.assign({}, state, payload.data);
     case Constant.SET_LOADING_HOTSHOW:
-      return Object.assign(state, { loading: payload.data });
+      return Object.assign({}, state, { loading: payload.data });
     default:
       return state;
   }
