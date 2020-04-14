@@ -6,10 +6,15 @@ import { getNewMovie } from "src/store/actions";
 import MovieCard from "src/components/MovieCard";
 import { CardListSkeleton } from "src/components/Skeletons";
 import { IMovieItem } from "src/types";
-const NewMovie: React.FC<INewMovieProps> = ({ title, loading, subjects, getNewMovie }) => {
+const NewMovie: React.FC<INewMovieProps> = ({
+  title,
+  loading,
+  subjects,
+  getNewMovie,
+}) => {
   useEffect(() => {
     getNewMovie();
-  }, []);
+  }, [getNewMovie]);
   return (
     <div className="block block-newmovie">
       <div className="line-raw">
@@ -29,18 +34,11 @@ const NewMovie: React.FC<INewMovieProps> = ({ title, loading, subjects, getNewMo
 };
 const mapStateToProps = (state: IStoreState) => {
   const newMovieState = state.newMovie;
-  console.log(newMovieState)
   return {
     ...newMovieState,
   };
 };
 
-// // dispatch 可以传入对象、函数，这里不能直接简单的使用 Dispatch 类型
-// const mapDispatchToProps = (dispatch: any) => ({
-//     changeName: (data: any) => dispatch(changeName(data)),
-//     changeNameAsync: () => dispatch(changeNameAsync())
-// });
-// // 也可以使用 bindActionCreators
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {

@@ -30,7 +30,7 @@ const Weekly: React.FC<IWeeklyProps> = ({
           let { subject } = item;
           let { rating, title } = subject;
           return (
-            <div className="card-container">
+            <div className="card-container" key={index}>
               <div className="rate">{rating.average} 分</div>
               <div className="title">{title}</div>
               <div className="dot"></div>

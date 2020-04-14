@@ -1,33 +1,68 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { Dispatch, bindActionCreators } from "redux";
-import { IStoreState, IAction, IHotShowProps } from "src/types";
-import { getHotShow } from "src/store/actions";
+import { IStoreState, IAction, IUsBoxProps, IUsBoxItem } from "src/types";
+import { getUsBox } from "src/store/actions";
 import MovieCard from "src/components/MovieCard";
-import { CardListSkeleton } from "src/components/Skeletons";
+import { ListSkeleton } from "src/components/Skeletons";
 import { IMovieItem } from "src/types";
-const HotShow: React.FC<IHotShowProps> = ({
+
+const showSummary = (
+  avarage: number = 0,
+  collect_count: number,
+  isNew: boolean
+) => {
+  if (isNew) {
+    return (
+      <p className="summary">
+        {avarage}分{collect_count}收藏
+      </p>
+    );
+  } else {
+    return (
+      <p className="summary">
+        <span className="box-new">新上榜</span>
+        {avarage}分 / {collect_count}收藏
+      </p>
+    );
+  }
+};
+
+const UsBox: React.FC<IUsBoxProps> = ({
   title,
-  count,
-  start,
   loading,
   subjects,
-  getHotShow,
+  date,
+  getUsBox,
 }) => {
   useEffect(() => {
-    getHotShow(start, count);
-  }, [count, getHotShow, start]);
+    getUsBox();
+  }, [getUsBox]);
   return (
-    <div className="block block-hotshow">
+    <div className="rate-box">
       <div className="line-raw">
         <h2 className="raw-title">{title}</h2>
+        <p>{date} 更新/美元</p>
       </div>
       <div className="cards-box clearfix">
         {loading ? (
-          <CardListSkeleton column={6} />
+          <ListSkeleton row={2} />
         ) : (
-          subjects.map((item: IMovieItem, index: number) => {
-            return <MovieCard height={300} item={item} key={index} />;
+          subjects.map((item: IUsBoxItem, index: number) => {
+            let { rank, box, subject } = item;
+            let { title, id, rating, collect_count } = subject;
+            let { average } = rating;
+            return (
+              <li className="goodbox-rate" key={index}>
+                <Link to={`/detail/${id}`}>
+                  <h3 className="title">{title}</h3>
+                  {showSummary(average, collect_count, item.new)}
+                  <span className="rank">{rank}</span>
+                  <span className="box">{box / 1e4} 万</span>
+                </Link>
+              </li>
+            );
           })
         )}
       </div>
@@ -35,24 +70,18 @@ const HotShow: React.FC<IHotShowProps> = ({
   );
 };
 const mapStateToProps = (state: IStoreState) => {
-  const hotShowState = state.hotShow;
+  const usBoxState = state.usBox;
   return {
-    ...hotShowState,
+    ...usBoxState,
   };
 };
 
-// // dispatch 可以传入对象、函数，这里不能直接简单的使用 Dispatch 类型
-// const mapDispatchToProps = (dispatch: any) => ({
-//     changeName: (data: any) => dispatch(changeName(data)),
-//     changeNameAsync: () => dispatch(changeNameAsync())
-// });
-// // 也可以使用 bindActionCreators
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      getHotShow,
+      getUsBox,
     },
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(HotShow);
+export default connect(mapStateToProps, mapDispatchToProps)(UsBox);

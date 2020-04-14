@@ -40,10 +40,7 @@ export const getHotShow = (start: number = 0, count: number = 12) => async (
   dispatch(setLoading(Constant.SET_LOADING_HOTSHOW, false));
 };
 
-export const getNewMovie = () => async (
-  dispatch: Dispatch
-  ) => {
-  // const fetchData = async () => {
+export const getNewMovie = () => async (dispatch: Dispatch) => {
   dispatch(setLoading(Constant.SET_LOADING_NEWMOVIE, true));
   try {
     const res = await Api.getNew();
@@ -62,7 +59,6 @@ export const getNewMovie = () => async (
 export const getTop250 = (start: number = 0, count: number = 12) => async (
   dispatch: Dispatch
 ) => {
-  // const fetchData = async () => {
   dispatch(setLoading(Constant.SET_LOADING_TOP250, true));
   try {
     const res = await Api.getTop250({ start, count });
@@ -81,7 +77,6 @@ export const getTop250 = (start: number = 0, count: number = 12) => async (
 export const getWeekly = (start: number = 0, count: number = 12) => async (
   dispatch: Dispatch
 ) => {
-  // const fetchData = async () => {
   dispatch(setLoading(Constant.SET_LOADING_WEEKLY, true));
   try {
     const res = await Api.getWeeklyMovie();
@@ -95,4 +90,22 @@ export const getWeekly = (start: number = 0, count: number = 12) => async (
     dispatch(setErrorAction("获取数据失败"));
   }
   dispatch(setLoading(Constant.SET_LOADING_WEEKLY, false));
+};
+
+export const getUsBox = () => async (
+  dispatch: Dispatch
+) => {
+  dispatch(setLoading(Constant.SET_LOADING_USBOX, true));
+  try {
+    const res = await Api.getUsbox();
+    dispatch({
+      type: Constant.SET_USBOX,
+      payload: {
+        data: res,
+      },
+    });
+  } catch (err) {
+    dispatch(setErrorAction("获取数据失败"));
+  }
+  dispatch(setLoading(Constant.SET_LOADING_USBOX, false));
 };

@@ -112,8 +112,8 @@ export interface ITop250State extends IHotShowState {}
 export interface IStoreState {
   hotShow: IHotShowState;
   newMovie: INewMovieState;
-  usBox: IUsBoxItem;
-  weekly: IWeeklyItem;
+  usBox: IUsBoxState;
+  weekly: IWeeklyState;
   top250: ITop250State;
   loading: boolean;
 }
@@ -132,4 +132,8 @@ export interface ITop250Props extends ITop250State {
 
 export interface IWeeklyProps extends IWeeklyState {
   getWeekly: () => void;
+}
+
+export interface IUsBoxProps extends IUsBoxState{
+  getUsBox: () => void;
 }

@@ -80,7 +80,7 @@ export function getDetail(id: string) {
 }
 
 // 北美票房榜
-export function getGoodbox() {
+export function getUsbox() {
   return request("/us_box", "get");
 }
 

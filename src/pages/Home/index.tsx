@@ -10,9 +10,10 @@ import imgBanner005 from "src/assets/banner-005.jpg";
 
 import Banner from "src/components/Banner";
 import HotShow from "./HotShow";
-import NewMovie from './NewMovie'
-import Top250 from './Top250'
-import Weekly from './Weekly'
+import NewMovie from "./NewMovie";
+import Top250 from "./Top250";
+import Weekly from "./Weekly";
+import UsBox from "./UsBox";
 export default function Home() {
   let bannerList = [
     imgBanner001,
@@ -29,8 +30,9 @@ export default function Home() {
       <div className="page page-home">
         <HotShow />
         <NewMovie />
+        <UsBox />
+        <Weekly />
         <Top250 />
-        <Weekly/>
       </div>
     </div>
   );
