@@ -1,33 +1,49 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
-import { IStoreState, IAction, IHotShowProps } from "src/types";
-import { getHotShow } from "src/store/actions";
+import { IStoreState, IWeeklyProps, IWeeklyItem } from "src/types";
+import { getWeekly } from "src/store/actions";
 import MovieCard from "src/components/MovieCard";
 import { CardListSkeleton } from "src/components/Skeletons";
-import { IMovieItem } from "src/types";
-const HotShow: React.FC<IHotShowProps> = ({
+
+const Weekly: React.FC<IWeeklyProps> = ({
   title,
-  count,
-  start,
   loading,
   subjects,
-  getHotShow,
+  getWeekly,
 }) => {
   useEffect(() => {
-    getHotShow(start, count);
-  }, [count, getHotShow, start]);
+    getWeekly();
+  }, [getWeekly]);
   return (
-    <div className="block block-hotshow">
+    <div className="block block-weekly">
       <div className="line-raw">
         <h2 className="raw-title">{title}</h2>
+        <div className="spotbox">
+          <div className="spot"></div>
+          <div className="spot"></div>
+          <div className="spot"></div>
+        </div>
+      </div>
+      <div className="cards-box weekly-box clearfix">
+        {subjects.slice(0, 6).map((item: IWeeklyItem, index: number) => {
+          let { subject } = item;
+          let { rating, title } = subject;
+          return (
+            <div className="card-container">
+              <div className="rate">{rating.average} 分</div>
+              <div className="title">{title}</div>
+              <div className="dot"></div>
+            </div>
+          );
+        })}
       </div>
       <div className="cards-box clearfix">
         {loading ? (
           <CardListSkeleton column={6} />
         ) : (
-          subjects.map((item: IMovieItem, index: number) => {
-            return <MovieCard height={300} item={item} key={index} />;
+          subjects.slice(0, 6).map((item: IWeeklyItem, index: number) => {
+            return <MovieCard height={300} item={item.subject} key={index} />;
           })
         )}
       </div>
@@ -35,24 +51,18 @@ const HotShow: React.FC<IHotShowProps> = ({
   );
 };
 const mapStateToProps = (state: IStoreState) => {
-  const hotShowState = state.hotShow;
+  const weeklyState = state.weekly;
   return {
-    ...hotShowState,
+    ...weeklyState,
   };
 };
 
-// // dispatch 可以传入对象、函数，这里不能直接简单的使用 Dispatch 类型
-// const mapDispatchToProps = (dispatch: any) => ({
-//     changeName: (data: any) => dispatch(changeName(data)),
-//     changeNameAsync: () => dispatch(changeNameAsync())
-// });
-// // 也可以使用 bindActionCreators
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      getHotShow,
+      getWeekly,
     },
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(HotShow);
+export default connect(mapStateToProps, mapDispatchToProps)(Weekly);

@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
-import { IStoreState, IAction, INewMovieState } from "src/types";
+import { IStoreState, IAction, INewMovieProps } from "src/types";
 import { getNewMovie } from "src/store/actions";
 import MovieCard from "src/components/MovieCard";
 import { CardListSkeleton } from "src/components/Skeletons";
 import { IMovieItem } from "src/types";
-const NewMovie: React.FC<INewMovieState> = ({ title, loading, subjects }) => {
+const NewMovie: React.FC<INewMovieProps> = ({ title, loading, subjects, getNewMovie }) => {
   useEffect(() => {
-    console.log(222);
     getNewMovie();
-  }, [getNewMovie]);
+  }, []);
   return (
     <div className="block block-newmovie">
       <div className="line-raw">
@@ -30,6 +29,7 @@ const NewMovie: React.FC<INewMovieState> = ({ title, loading, subjects }) => {
 };
 const mapStateToProps = (state: IStoreState) => {
   const newMovieState = state.newMovie;
+  console.log(newMovieState)
   return {
     ...newMovieState,
   };

@@ -121,3 +121,15 @@ export interface IStoreState {
 export interface IHotShowProps extends IHotShowState {
   getHotShow: (start: number, count: number) => void;
 }
+
+export interface INewMovieProps extends INewMovieState {
+  getNewMovie: () => void;
+}
+
+export interface ITop250Props extends ITop250State {
+  getTop250: (start: number, count: number) => void;
+}
+
+export interface IWeeklyProps extends IWeeklyState {
+  getWeekly: () => void;
+}

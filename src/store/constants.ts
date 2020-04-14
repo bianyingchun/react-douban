@@ -9,3 +9,6 @@ export const SET_LOADING_NEWMOVIE = "setLoadingNewMovie";
 
 export const SET_TOP250_LIST = "setTop250List";
 export const SET_LOADING_TOP250 = "setLoadingTop250";
+
+export const SET_WEEKLY = "setWeekly";
+export const SET_LOADING_WEEKLY  = "setLoadingWeekly";

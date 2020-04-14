@@ -69,29 +69,24 @@ export function getNew() {
   return request("/new_movies", "get");
 }
 
+// 口碑榜
+export function getWeeklyMovie() {
+  return request("/weekly", "get");
+}
+
 // 电影详情
-export function getDetail(id: string): AxiosPromise {
-  return http().get(`/subject/${id}`);
+export function getDetail(id: string) {
+  return request(`/subject/${id}`, "get");
 }
 
 // 北美票房榜
-export function getGoodbox(): AxiosPromise {
-  return http().get("/us_box");
+export function getGoodbox() {
+  return request("/us_box", "get");
 }
 
 // 搜索条目
-export function getContentBySearch(
-  str: string,
-  params?: iRequestGetData
-): AxiosPromise {
-  return http().get(`/search?q=${str}`, {
-    params,
-  });
-}
-
-// 口碑榜
-export function getWeeklyMovie(): AxiosPromise {
-  return http().get("/weekly");
+export function getContentBySearch(str: string, params?: iRequestGetData) {
+  return request(`/search?q=${str}`, "get", params);
 }
 
 // 获取每日壁纸

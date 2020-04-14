@@ -1,24 +1,24 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
-import { IStoreState, IAction, IHotShowProps } from "src/types";
-import { getHotShow } from "src/store/actions";
+import { IStoreState, IAction, ITop250Props } from "src/types";
+import { getTop250 } from "src/store/actions";
 import MovieCard from "src/components/MovieCard";
 import { CardListSkeleton } from "src/components/Skeletons";
 import { IMovieItem } from "src/types";
-const HotShow: React.FC<IHotShowProps> = ({
+const Top250: React.FC<ITop250Props> = ({
   title,
   count,
   start,
   loading,
   subjects,
-  getHotShow,
+  getTop250,
 }) => {
   useEffect(() => {
-    getHotShow(start, count);
-  }, [count, getHotShow, start]);
+    getTop250(start, count);
+  }, [count, getTop250, start]);
   return (
-    <div className="block block-hotshow">
+    <div className="block block-top250">
       <div className="line-raw">
         <h2 className="raw-title">{title}</h2>
       </div>
@@ -35,24 +35,18 @@ const HotShow: React.FC<IHotShowProps> = ({
   );
 };
 const mapStateToProps = (state: IStoreState) => {
-  const hotShowState = state.hotShow;
+  const top250State = state.top250;
   return {
-    ...hotShowState,
+    ...top250State,
   };
 };
 
-// // dispatch 可以传入对象、函数，这里不能直接简单的使用 Dispatch 类型
-// const mapDispatchToProps = (dispatch: any) => ({
-//     changeName: (data: any) => dispatch(changeName(data)),
-//     changeNameAsync: () => dispatch(changeNameAsync())
-// });
-// // 也可以使用 bindActionCreators
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      getHotShow,
+      getTop250,
     },
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(HotShow);
+export default connect(mapStateToProps, mapDispatchToProps)(Top250);

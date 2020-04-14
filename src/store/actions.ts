@@ -44,11 +44,9 @@ export const getNewMovie = () => async (
   dispatch: Dispatch
   ) => {
   // const fetchData = async () => {
-  console.log(333);
   dispatch(setLoading(Constant.SET_LOADING_NEWMOVIE, true));
   try {
     const res = await Api.getNew();
-    console.log("0000", res);
     dispatch({
       type: Constant.SET_NEWMOVIE_LIST,
       payload: {
@@ -78,4 +76,23 @@ export const getTop250 = (start: number = 0, count: number = 12) => async (
     dispatch(setErrorAction("获取数据失败"));
   }
   dispatch(setLoading(Constant.SET_LOADING_TOP250, false));
+};
+
+export const getWeekly = (start: number = 0, count: number = 12) => async (
+  dispatch: Dispatch
+) => {
+  // const fetchData = async () => {
+  dispatch(setLoading(Constant.SET_LOADING_WEEKLY, true));
+  try {
+    const res = await Api.getWeeklyMovie();
+    dispatch({
+      type: Constant.SET_WEEKLY,
+      payload: {
+        data: res,
+      },
+    });
+  } catch (err) {
+    dispatch(setErrorAction("获取数据失败"));
+  }
+  dispatch(setLoading(Constant.SET_LOADING_WEEKLY, false));
 };
