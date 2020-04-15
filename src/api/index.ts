@@ -44,7 +44,7 @@ const request = (
     requestData.data = args;
   }
 
-  return new Promise((resolve, reject) => {
+  return new Promise<any>((resolve, reject) => {
     service(requestData)
       .then((res) => {
         resolve(res.data);

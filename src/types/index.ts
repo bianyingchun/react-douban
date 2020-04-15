@@ -134,26 +134,30 @@ export interface IWeeklyProps extends IWeeklyState {
   getWeekly: () => void;
 }
 
-export interface IUsBoxProps extends IUsBoxState{
+export interface IUsBoxProps extends IUsBoxState {
   getUsBox: () => void;
 }
 
 // ===============================================
 // topbar search
-export interface ISearchHistory{
+export interface ISearchItem {
   id: string;
-  title:string
+  title: string;
 }
 
-export interface ISearchState{
-  history:Array<ISearchHistory>
+export interface ISearchState {
+  history: Array<ISearchItem>;
 }
 
-export interface ITopNavProps{
-  history: ISearchState;
-  // 标题插槽
-  slotTitle?: JSX.Element;
-  // 是否固定到头部
-  noAffix?: boolean;
+export interface ITopNavProps extends ISearchState {
+  hotShow: IHotShowState;
+  addSearchHistory: (item: ISearchItem) => void;
 }
 
+export interface ISugguestProps extends ISearchState {
+  show: boolean;
+  showTips:boolean;//搜索提示
+  hotShowList: Array<IMovieItem>;
+  addSearchHistory: (item: ISearchItem) => void;
+  suggestList:Array<IMovieItem>
+}
