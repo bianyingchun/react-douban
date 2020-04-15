@@ -137,3 +137,23 @@ export interface IWeeklyProps extends IWeeklyState {
 export interface IUsBoxProps extends IUsBoxState{
   getUsBox: () => void;
 }
+
+// ===============================================
+// topbar search
+export interface ISearchHistory{
+  id: string;
+  title:string
+}
+
+export interface ISearchState{
+  history:Array<ISearchHistory>
+}
+
+export interface ITopNavProps{
+  history: ISearchState;
+  // 标题插槽
+  slotTitle?: JSX.Element;
+  // 是否固定到头部
+  noAffix?: boolean;
+}
+

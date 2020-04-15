@@ -3,10 +3,12 @@ import usBox from "./usBox";
 import newMovie from "./newMovie";
 import weekly from "./weekly";
 import hotShow from "./hotShow";
+import search from './search'
 export default {
   newMovie,
   usBox,
   weekly,
   top250,
   hotShow,
+  search
 };
