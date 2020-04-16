@@ -1,3 +1,4 @@
+import { RouteComponentProps } from "react-router-dom";
 // 轮播图
 export type IBannerProps = {
   list: Array<string>;
@@ -116,6 +117,7 @@ export interface IStoreState {
   weekly: IWeeklyState;
   top250: ITop250State;
   loading: boolean;
+  search: ISearchState;
 }
 
 export interface IHotShowProps extends IHotShowState {
@@ -140,24 +142,30 @@ export interface IUsBoxProps extends IUsBoxState {
 
 // ===============================================
 // topbar search
-export interface ISearchItem {
-  id: string;
-  title: string;
-}
-
+// export interface ISearchItem {
+//   id?: string; //不应该通过id跳转到详情页，只能靠title跳转到/search?q={title}
+//   title: string;
+// }
+export type ISearchItem = string;
 export interface ISearchState {
-  history: Array<ISearchItem>;
+  searchHistory: Array<ISearchItem>;
 }
 
-export interface ITopNavProps extends ISearchState {
+//为了解决withRouter所带来的prop下的属性没有进行类型判断，需要继承RouteComponentProps
+export interface ITopNavProps extends ISearchState, RouteComponentProps {
   hotShow: IHotShowState;
   addSearchHistory: (item: ISearchItem) => void;
 }
 
 export interface ISugguestProps extends ISearchState {
   show: boolean;
-  showTips:boolean;//搜索提示
-  hotShowList: Array<IMovieItem>;
+  showTips: boolean; //搜索提示
+  hotShow: IHotShowState;
+  suggestList: Array<IMovieItem>;
   addSearchHistory: (item: ISearchItem) => void;
-  suggestList:Array<IMovieItem>
+  clearSearchHistory: () => void;
+}
+
+export interface ISearchParams {
+  q: string;
 }

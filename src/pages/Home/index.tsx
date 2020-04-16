@@ -14,7 +14,7 @@ import NewMovie from "./NewMovie";
 import Top250 from "./Top250";
 import Weekly from "./Weekly";
 import UsBox from "./UsBox";
-export default function Home() {
+export default function Home(props: any) {
   let bannerList = [
     imgBanner001,
     imgBanner002,

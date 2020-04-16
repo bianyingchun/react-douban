@@ -15,3 +15,6 @@ export const SET_LOADING_WEEKLY = "setLoadingWeekly";
 
 export const SET_USBOX = "setUsBox";
 export const SET_LOADING_USBOX = "setLoadingUsBox";
+
+export const ADD_SEARCH_HISTORY = 'addSearchHistory'
+export const CLEAR_SEARCH_HISTORY = 'clearSearchHistory'

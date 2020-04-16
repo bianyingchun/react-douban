@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
-import { IStoreState, IAction, IHotShowProps } from "src/types";
+import { IStoreState, IHotShowProps } from "src/types";
 import { getHotShow } from "src/store/actions";
 import MovieCard from "src/components/MovieCard";
 import { CardListSkeleton } from "src/components/Skeletons";

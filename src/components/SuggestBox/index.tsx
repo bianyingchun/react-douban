@@ -3,25 +3,35 @@ import { ISugguestProps } from "src/types";
 import { Link } from "react-router-dom";
 
 const SuggestBox: React.FC<ISugguestProps> = ({
-  history,
+  searchHistory,
   show = false,
   showTips = false,
-  hotShowList,
+  hotShow,
   addSearchHistory,
+  clearSearchHistory,
   suggestList,
 }) => {
   return (
-    <div className="search-list" style={{ display: show ? "block" : "none" }} onClick={(ev) => {ev.nativeEvent.stopImmediatePropagation()}}>
+    <div
+      className="search-list"
+      style={{ display: show ? "block" : "none" }}
+      onClick={(ev) => {
+        ev.nativeEvent.stopImmediatePropagation();
+      }}
+    >
       {showTips ? (
         <div>
           <div className="list-history">
-            <h4 className="panel-title">历史记录</h4>
+            <div>
+              <h4 className="panel-title">历史记录</h4>{" "}
+              <span onClick={clearSearchHistory}></span>
+            </div>
             <ul>
-              {history.map((item, index) => {
+              {searchHistory.map((item, index) => {
                 return (
                   <li className="list-item" key={index}>
-                    <Link to={`/detail/${item.id}`}>
-                      <h5 className="title">{item.title}</h5>
+                    <Link to={`/search/q=${item}`}>
+                      <h5 className="title">{item}</h5>
                     </Link>
                   </li>
                 );
@@ -30,14 +40,15 @@ const SuggestBox: React.FC<ISugguestProps> = ({
           </div>
           <div className="list-hot">
             <h4 className="panel-title">热映</h4>
+            {/* TODO */}
             <ul>
-              {hotShowList.slice(0, 8).map((item, index) => {
+              {hotShow.subjects.slice(0, 8).map((item, index) => {
                 return (
                   <li className="list-item" key={index}>
                     <Link
                       to={`/detail/${item.id}`}
                       onClick={() => {
-                        addSearchHistory(item);
+                        addSearchHistory(item.title);
                       }}
                     >
                       <span className="index">{+index + 1}</span>

@@ -1,4 +1,4 @@
-import { IAction } from "src/types/index";
+import { IAction, ISearchItem } from "src/types/index";
 import { Dispatch } from "redux";
 import * as Constant from "./constants";
 import * as Api from "src/api";
@@ -109,3 +109,21 @@ export const getUsBox = () => async (
   }
   dispatch(setLoading(Constant.SET_LOADING_USBOX, false));
 };
+
+export const addSearchHistory = (item:ISearchItem) => { 
+  return {
+    type: Constant.ADD_SEARCH_HISTORY,
+    payload: {
+      data:item
+    }
+  }
+}
+
+export const clearSearchHistory = () => { 
+  return {
+    type: Constant.CLEAR_SEARCH_HISTORY,
+    payload: {
+      data:null
+    }
+  }
+}
