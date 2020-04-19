@@ -14,9 +14,6 @@ const HotShow: React.FC<IHotShowProps> = ({
   subjects,
   getHotShow,
 }) => {
-  useEffect(() => {
-    getHotShow(start, count);
-  }, [count, getHotShow, start]);
   return (
     <div className="block block-hotshow">
       <div className="line-raw">

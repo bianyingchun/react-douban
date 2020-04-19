@@ -1,7 +1,7 @@
 import React from "react";
-import { Card, Skeleton, Statistic} from "antd";
+import { Card, Skeleton, Statistic } from "antd";
 import loadingSvg from "src/assets/loading.svg";
-import './style.scss'
+import "./style.scss";
 // 预加载卡片样式
 export const CardListSkeleton: React.FC<ICardList> = ({ column = 6 }) => {
   let list = new Array(column).fill(1);
@@ -79,22 +79,20 @@ export const ListSkeleton: React.FC<IList> = ({ row = 4 }) => {
   );
 };
 
-
-export const DetailSkeleton:React.FC = () => {
+export const DetailSkeleton: React.FC = () => {
   return (
     <div className="page page-detail">
       <div className="poster-box">
         <div className="profile">
-          <div className="profile-rate">
-            <div className="rate">
-              <span className="units">0</span>
+          <div className="preview block">
+            <div className="profile-img-loading"></div>
+            <div className="profile-rate">
+              <div className="rate">
+                <span className="units">0</span>
+              </div>
+              <Statistic title="评价人数" value="0" className="box" />
             </div>
-            <Statistic
-              title="评价人数"
-              value="0"
-              className="box" />
           </div>
-          <div className="block profile-img-loading"></div>
           <div className="block profile-info">
             <Skeleton />
           </div>
@@ -105,4 +103,4 @@ export const DetailSkeleton:React.FC = () => {
       </div>
     </div>
   );
-}
+};

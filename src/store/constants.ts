@@ -18,3 +18,7 @@ export const SET_LOADING_USBOX = "setLoadingUsBox";
 
 export const ADD_SEARCH_HISTORY = 'addSearchHistory'
 export const CLEAR_SEARCH_HISTORY = 'clearSearchHistory'
+
+export const SET_MOVIE_DETAIL = 'setMovieDetail'
+export const SET_LOADING_DETAIL = 'setLodaingDetail'
+export const SET_TOP250_PAGE = 'set_top250_page'

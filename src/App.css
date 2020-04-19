@@ -1,6 +1,7 @@
 /* reset.css */
 
 @import '~antd/dist/antd.css';
+
 ul {
     list-style: none;
 }
@@ -23,7 +24,7 @@ h6 {
     margin: 0;
 }
 
- :root {
+:root {
     --themeColor: #44883e;
     --themeHoverColor: #080;
     --hoverColor: #ff5c38;
@@ -45,6 +46,7 @@ html {
 
 body {
     font-family: numFont, PingFangSC-Regular, Tahoma, "Microsoft Yahei", sans-serif;
+    min-width: 1000px;
 }
 
 .clearfix:after {
@@ -69,4 +71,8 @@ body {
     background-color: var(--hoverColor);
     border-color: var(--hoverColor);
     color: #fff;
+}
+
+.clearfix {
+    zoom: 1
 }

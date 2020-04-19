@@ -4,7 +4,7 @@ export type IBannerProps = {
   list: Array<string>;
 };
 
-export type IMovieItem = {
+export interface IMovieItem {
   id: string;
   rating: {
     average: number;
@@ -20,18 +20,17 @@ export type IMovieItem = {
     large: string;
   };
   genres: Array<string>;
-  year: string;
-  has_video: boolean;
-  durations: Array<string>;
-  collect_count: number;
-  subType: string;
-  directors: Array<any>;
-  cast: Array<any>;
-  alt: string;
-  original_title: string;
-  pubdates: Array<string>;
+  // year: string;
+  // has_video: boolean;
+  // durations: Array<string>;
+  // collect_count: number;
+  // subType: string;
+  // cast: Array<any>;
+  // alt: string;
+  // original_title: string;
+  // pubdates: Array<string>;
   [prop: string]: any;
-};
+}
 
 // 首页电影item
 export type IMovieCardProps = {
@@ -108,7 +107,10 @@ export interface IWeeklyState {
   loading: boolean;
 }
 // top250
-export interface ITop250State extends IHotShowState {}
+export interface ITop250State extends IHotShowState {
+  pages: Array<Array<IMovieItem>>;
+  currentPage: number;
+}
 
 export interface IStoreState {
   hotShow: IHotShowState;
@@ -118,6 +120,7 @@ export interface IStoreState {
   top250: ITop250State;
   loading: boolean;
   search: ISearchState;
+  detail: IDetailState;
 }
 
 export interface IHotShowProps extends IHotShowState {
@@ -129,7 +132,8 @@ export interface INewMovieProps extends INewMovieState {
 }
 
 export interface ITop250Props extends ITop250State {
-  getTop250: (start: number, count: number) => void;
+  getTop250: (page: number) => void;
+  turnTop250Page:(currentPage:number)=>void
 }
 
 export interface IWeeklyProps extends IWeeklyState {
@@ -153,8 +157,10 @@ export interface ISearchState {
 
 //为了解决withRouter所带来的prop下的属性没有进行类型判断，需要继承RouteComponentProps
 export interface ITopNavProps extends ISearchState, RouteComponentProps {
-  hotShow: IHotShowState;
   addSearchHistory: (item: ISearchItem) => void;
+  clearSearchHistory: () => void;
+  hotShow: IHotShowState;
+  getHotShow: (start: number, count: number) => void;
 }
 
 export interface ISugguestProps extends ISearchState {
@@ -168,4 +174,90 @@ export interface ISugguestProps extends ISearchState {
 
 export interface ISearchParams {
   q: string;
+}
+
+// ================detail=============
+export interface IDoubanAuthor {
+  uid: string;
+  avatar: string;
+  signature: string;
+  alt: string;
+  id: string;
+  name: string;
+}
+export interface IUserMovieRating {
+  max: number;
+  value: number;
+  min: number;
+}
+export type IMovieReviewItem = {
+  title?: string;
+  subject_id: string;
+  author: IDoubanAuthor;
+  summary?: string;
+  alt?: string;
+  id: string;
+  rating: IUserMovieRating;
+};
+export type IMovieCommentItem = {
+  rating: IUserMovieRating;
+  useful_count?: number;
+  author: IDoubanAuthor;
+  subject_id: string;
+  content?: string;
+  created_at?: string;
+  id: string;
+};
+export type IMovieCommentItemProps = IMovieCommentItem & IMovieReviewItem;
+export interface IPeople {
+  avatars: any;
+  name_en: string;
+  name: string;
+  alt: string;
+  id: string;
+}
+export interface IMoviePhoto {
+  thumb: string;
+  image: string;
+  cover: string;
+  alt: string;
+  id: string;
+  icon: string;
+}
+export interface ITrailerItem {
+  medium: string;
+  title: string;
+  subject_id: string;
+  alt: string;
+  small: string;
+  resource_url: string;
+  id: string;
+}
+export interface ITrailer {
+  trailer_urls: string[];
+  trailers: ITrailerItem[];
+}
+export interface IMovieComment {
+  popular_comments: Array<IMovieCommentItem>;
+  popular_reviews: Array<IMovieReviewItem>;
+  reviews_count: number;
+  comments_count: number;
+}
+export interface IDetailState extends IMovieItem, ITrailer, IMovieComment {
+  writers: Array<IPeople>;
+  tags: Array<string>;
+  casts: Array<IPeople>;
+  summary: string;
+  directors: Array<IPeople>;
+  ratings_count: number;
+  loading: boolean;
+}
+
+interface IDetailRouteParams {
+  id: string;
+}
+export interface IDetailProps
+  extends IDetailState,
+    RouteComponentProps<IDetailRouteParams> {
+  getMovieDetail: (id: string) => void;
 }

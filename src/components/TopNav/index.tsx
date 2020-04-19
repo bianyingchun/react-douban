@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
 import { SearchOutlined } from "@ant-design/icons";
 import _ from "lodash";
+import { getHotShow } from "src/store/actions";
 import { addSearchHistory, clearSearchHistory } from "src/store/actions";
 import {
   IStoreState,
@@ -20,10 +21,15 @@ const TopNav: React.FC<ITopNavProps> = ({
   searchHistory = [],
   hotShow,
   addSearchHistory,
+  clearSearchHistory,
   history,
+  getHotShow,
 }) => {
+  useEffect(() => {
+    getHotShow(0, 6);
+  }, [getHotShow]);
   let [isShowSuggestBox, setIsShowSuggestBox] = useState<boolean>(false);
-  let [isShowTipsPanel, setIsShowTipsPanel] = useState<boolean>(false);
+  let [isShowTipsPanel, setIsShowTipsPanel] = useState<boolean>(true);
   let [suggestList, setSuggestList] = useState<Array<IMovieItem>>([]);
   let [searchStr, setSearchStr] = useState<string>("");
 
@@ -36,14 +42,14 @@ const TopNav: React.FC<ITopNavProps> = ({
       pathname: "/search",
       search: serialize(query),
     });
-    addSearchHistory(searchStr)
+    addSearchHistory(searchStr);
   }
 
   const getSuggestionBySearch = getContentBySearchDebounce();
 
   function getContentBySearchDebounce() {
     return _.debounce((value) => {
-      getContentBySearch(value, { count: 5 }).then((res) => {
+      getContentBySearch(value, { count: 5, start: 0 }).then((res) => {
         setSuggestList(res.subjects);
       });
     }, 5e2);
@@ -92,14 +98,14 @@ const TopNav: React.FC<ITopNavProps> = ({
           </Link>
         </span>
         <div className="search">
-          <div className="search_box">
+          <div className="search-box">
             <div className="search-btn" onClick={navToSearch}>
               {/* <SearchOutlined/> */}
               <span>全网搜</span>
             </div>
             <input
               type="text"
-              className="search_input"
+              className="search-input"
               placeholder={hotShow.title}
               onChange={handleChangeSearch}
               onClick={handleClickSearch}
@@ -122,8 +128,10 @@ const TopNav: React.FC<ITopNavProps> = ({
 };
 const mapStateToProps = (state: IStoreState) => {
   const searchState = state.search;
+  const hotShow = state.hotShow;
   return {
     ...searchState,
+    hotShow: hotShow,
   };
 };
 
@@ -132,6 +140,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     {
       addSearchHistory,
       clearSearchHistory,
+      getHotShow,
     },
     dispatch
   );

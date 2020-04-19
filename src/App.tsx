@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import moment from "moment";
+import "moment/locale/zh-cn";
 import zhCN from "antd/es/locale/zh_CN";
 import { ConfigProvider } from "antd";
 import "./test.scss";

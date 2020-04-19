@@ -4,11 +4,13 @@ import newMovie from "./newMovie";
 import weekly from "./weekly";
 import hotShow from "./hotShow";
 import search from './search'
+import detail from './detail'
 export default {
   newMovie,
   usBox,
   weekly,
   top250,
   hotShow,
-  search
+  search,
+  detail
 };

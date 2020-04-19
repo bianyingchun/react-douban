@@ -1,23 +1,10 @@
 import axios from "axios";
 import { API_CONFIG } from "../common/constant";
 
-function http() {
-  const CancelToken = axios.CancelToken;
-  const source = CancelToken.source();
-  window.cancalXHRList.push(source);
-
-  let instance: AxiosInstance = axios.create({
-    baseURL: API_CONFIG.BASE_URL,
-    params: {
-      apiKey: API_CONFIG.KEY,
-    },
-    cancelToken: source.token,
-  });
-  return instance;
-}
-const service = axios.create({ timeout: 1000 * 4 });
+const service = axios.create({ timeout: 1000 * 10 });
 service.defaults.baseURL = API_CONFIG.BASE_URL;
 service.defaults.headers["content-type"] = "json";
+
 const request = (
   url: string,
   method: AxiosMethod,

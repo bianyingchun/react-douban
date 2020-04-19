@@ -1,0 +1,66 @@
+.header-bar {
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.94);
+    box-sizing: border-box;
+    padding: 10px 0;
+    min-width: 1000px;
+    box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
+
+    .bar-container {
+        margin: 0 10%;
+
+        .logo {
+            display: inline-block;
+            width: 125px;
+            height: 25px;
+            background-image: url("../../assets/douban-logo.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .search {
+            float: right;
+            position: relative;
+
+            .search-box {
+                background-color: initial;
+                box-shadow: none;
+                border: 1px solid var(--themeColor);
+                float: right;
+                height: 40px;
+                border-radius: 20px;
+                overflow: hidden;
+
+                .search-btn {
+                    float: right;
+                    height: 100%;
+                    width: 100px;
+                    text-align: center;
+                    line-height: 40px;
+                    background-color: var(--themeColor);
+                    color: var(--foreColor);
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: var(--themeHoverColor);
+                    }
+                }
+
+                .search-input {
+                    padding: 0 10px;
+                    margin: 0 0 0 20px;
+                    background-color: initial;
+                    border: none;
+                    outline: none;
+                    float: right;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}

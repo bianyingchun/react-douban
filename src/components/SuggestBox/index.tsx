@@ -1,11 +1,11 @@
 import React from "react";
 import { ISugguestProps } from "src/types";
 import { Link } from "react-router-dom";
-
+import "./style.scss";
 const SuggestBox: React.FC<ISugguestProps> = ({
   searchHistory,
   show = false,
-  showTips = false,
+  showTips = true,
   hotShow,
   addSearchHistory,
   clearSearchHistory,
@@ -22,15 +22,20 @@ const SuggestBox: React.FC<ISugguestProps> = ({
       {showTips ? (
         <div>
           <div className="list-history">
-            <div>
-              <h4 className="panel-title">历史记录</h4>{" "}
-              <span onClick={clearSearchHistory}></span>
+            <div className="panel-title">
+              <h4>历史记录</h4>
+              <span onClick={clearSearchHistory}>清空</span>
             </div>
             <ul>
               {searchHistory.map((item, index) => {
                 return (
                   <li className="list-item" key={index}>
-                    <Link to={`/search/q=${item}`}>
+                    <Link
+                      to={`/search?q=${item}`}
+                      onClick={() => {
+                        addSearchHistory(item);
+                      }}
+                    >
                       <h5 className="title">{item}</h5>
                     </Link>
                   </li>
@@ -39,14 +44,15 @@ const SuggestBox: React.FC<ISugguestProps> = ({
             </ul>
           </div>
           <div className="list-hot">
-            <h4 className="panel-title">热映</h4>
-            {/* TODO */}
+            <div className="panel-title">
+              <h4>热映</h4>
+            </div>
             <ul>
               {hotShow.subjects.slice(0, 8).map((item, index) => {
                 return (
                   <li className="list-item" key={index}>
                     <Link
-                      to={`/detail/${item.id}`}
+                      to={`/search?q=${item.title}`}
                       onClick={() => {
                         addSearchHistory(item.title);
                       }}
@@ -67,12 +73,9 @@ const SuggestBox: React.FC<ISugguestProps> = ({
               return (
                 <li className="list-item" key={index}>
                   <Link
-                    to={`/detail/${item.id}`}
-                    onClick={(ev: any) => {
-                      addSearchHistory({
-                        id: item.id,
-                        title: item.title,
-                      });
+                    to={`/search?q=${item.title}`}
+                    onClick={() => {
+                      addSearchHistory(item.title);
                     }}
                   >
                     <h5 className="title">{item.title}</h5>
