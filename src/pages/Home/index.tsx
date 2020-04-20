@@ -29,8 +29,10 @@ export default function Home(props: any) {
       <Banner list={bannerList} />
       <div className="page page-home">
         <HotShow />
-        <NewMovie />
-        <UsBox />
+        <div className="rank-wraper">
+          <NewMovie />
+          <UsBox />
+        </div>
         <Weekly />
         <Top250 />
       </div>

@@ -5,7 +5,7 @@ import { IStoreState, IWeeklyProps, IWeeklyItem } from "src/types";
 import { getWeekly } from "src/store/actions";
 import MovieCard from "src/components/MovieCard";
 import { CardListSkeleton } from "src/components/Skeletons";
-
+import './style.scss'
 const Weekly: React.FC<IWeeklyProps> = ({
   title,
   loading,

@@ -6,6 +6,7 @@ import { getNewMovie } from "src/store/actions";
 import MovieCard from "src/components/MovieCard";
 import { CardListSkeleton } from "src/components/Skeletons";
 import { IMovieItem } from "src/types";
+import "./style.scss";
 const NewMovie: React.FC<INewMovieProps> = ({
   title,
   loading,

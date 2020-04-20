@@ -7,13 +7,17 @@
 
 .wraper {
   padding-top: 60px;
-
   .page-home {
-    width: 80%;
-    margin: 0 auto;
-
+    width: 1098px;
+    margin: 40px auto;
     .block {
       margin: 0 0 50px 0;
+    }
+    .rank-wraper {
+      display: flex;
+      .block-newmovie {
+        flex: 1;
+      }
     }
   }
 }

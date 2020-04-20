@@ -7,7 +7,7 @@ import { getUsBox } from "src/store/actions";
 import MovieCard from "src/components/MovieCard";
 import { ListSkeleton } from "src/components/Skeletons";
 import { IMovieItem } from "src/types";
-import './style.scss'
+import "./style.scss";
 const showSummary = (
   avarage: number = 0,
   collect_count: number,
@@ -16,21 +16,20 @@ const showSummary = (
   if (isNew) {
     return (
       <p className="summary">
-        {avarage}分{collect_count}收藏
+        {avarage}分 / {collect_count}收藏
       </p>
     );
   } else {
     return (
       <p className="summary">
-        <span className="box-new">新上榜</span>
         {avarage}分 / {collect_count}收藏
+        <span className="box-new">新上榜 </span>
       </p>
     );
   }
 };
 
 const UsBox: React.FC<IUsBoxProps> = ({
-  title,
   loading,
   subjects,
   date,
@@ -42,7 +41,7 @@ const UsBox: React.FC<IUsBoxProps> = ({
   return (
     <div className="rate-box">
       <div className="line-raw">
-        <h2 className="raw-title">{title}</h2>
+        <h2 className="raw-title">北美票房榜</h2>
         <p>{date} 更新/美元</p>
       </div>
       <ul className="goodbox">

@@ -1,13 +1,15 @@
-.line-raw {
+.block-top250 {
+  .line-raw {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     .disabled {
-        color: #ccc;
+      color: #ccc;
     }
 
     .indicator {
-        margin: 0 20px;
+      margin: 0 20px;
     }
+  }
 }
