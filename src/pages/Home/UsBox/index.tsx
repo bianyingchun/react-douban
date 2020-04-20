@@ -7,7 +7,7 @@ import { getUsBox } from "src/store/actions";
 import MovieCard from "src/components/MovieCard";
 import { ListSkeleton } from "src/components/Skeletons";
 import { IMovieItem } from "src/types";
-
+import './style.scss'
 const showSummary = (
   avarage: number = 0,
   collect_count: number,
@@ -45,7 +45,7 @@ const UsBox: React.FC<IUsBoxProps> = ({
         <h2 className="raw-title">{title}</h2>
         <p>{date} 更新/美元</p>
       </div>
-      <div className="cards-box clearfix">
+      <ul className="goodbox">
         {loading ? (
           <ListSkeleton row={2} />
         ) : (
@@ -65,7 +65,7 @@ const UsBox: React.FC<IUsBoxProps> = ({
             );
           })
         )}
-      </div>
+      </ul>
     </div>
   );
 };

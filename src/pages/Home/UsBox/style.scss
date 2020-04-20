@@ -1,0 +1,49 @@
+.rate_box {
+  width: 32%;
+  .line-raw {
+    .goodbox {
+      .goodbox-rate {
+        position: relative;
+        margin: 10px 20px;
+        padding: 10px 50px;
+        border-top: 1px solid #eee;
+        .title {
+          font-size: 0.9rem;
+          font-weight: 800;
+          &:hover {
+            color: var(--themeHoverColor);
+          }
+        }
+        .rank {
+          position: absolute;
+          top: 0;
+          left: 0;
+          font-size: 2rem;
+          color: var(--rankOther);
+        }
+        &:nth-of-type(-n + 3) .rank {
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          background-image: linear-gradient(
+            180deg,
+            #ffb821 0,
+            #ff5c38 45%,
+            #ff1459
+          );
+        }
+        .box {
+          position: absolute;
+          top: 10px;
+          right: 0;
+          color: #999;
+        }
+        .summary {
+          color: #999;
+          .box-new {
+            color: var(--highlightColor);
+          }
+        }
+      }
+    }
+  }
+}
